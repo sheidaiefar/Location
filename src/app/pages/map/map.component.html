@@ -1,13 +1,9 @@
-<div class="map-container">
-  <div class="map-frame">
-    <div id="map"  leaflet></div>
-  </div>
-</div>
-
 <!--<div class="map-container" leaflet   ></div>-->
 <!--     [leafletOptions]="options"-->
 <!--     (leafletMapReady)="onMapReady($event)"-->
 <!--     (leafletMapZoomEnd)="onMapZoomEnd($event)"-->
 
 
-
+<div class="map-container">
+    <div id="map" (click)="getPosition($event)"></div>
+</div>

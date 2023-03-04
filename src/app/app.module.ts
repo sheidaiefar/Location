@@ -13,7 +13,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     BrowserModule,
     AppRoutingModule,
     MapModule,
-     LeafletModule
+    LeafletModule
   ],
   providers: [],
   exports:[

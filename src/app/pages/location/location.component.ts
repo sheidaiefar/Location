@@ -2,6 +2,8 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LocationModel} from "../models/location.model";
+import {Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'app-location',
@@ -11,16 +13,18 @@ import {LocationModel} from "../models/location.model";
 export class LocationComponent {
   location!: LocationModel;
   shareLocationForm!: FormGroup;
+  subscription = new Subscription();
+
   public data: any;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    if (this.data.formData) {
+    if (this.location) {
       //edit mode
       this.shareLocationForm = new FormGroup({
-        'name': new FormControl(this.data.formData.name, Validators.required),
+        'name': new FormControl(this.location.name, Validators.required),
 
       })
     } else {
@@ -29,9 +33,29 @@ export class LocationComponent {
 
       })
     }
+
+
   }
 
   onSubmitForm() {
+      location = {
+      name: this.shareLocationForm.value.name,
+    }
+    if (this.data.formData) {
+      //edit mode
+      data.id = this.data.formData.id;
+      this.subscription.add(this.budgetPeriodCrudService.update(data).subscribe(res => {
+        if (res) {
+          // this.dialogRef.close({status: 'success-update', res: res});
+        }
+      }));
+    } else {
+      this.subscription.add(this.budgetPeriodCrudService.create(data).subscribe(res => {
+        if (res) {
+          // this.dialogRef.close({status: 'success-add', res: res});
+        }
+      }));
+    }
   }
 
   close() {

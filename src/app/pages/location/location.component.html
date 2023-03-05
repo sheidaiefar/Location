@@ -1,13 +1,43 @@
 <div class="container">
   <div class="dialog-title">
     <h3 class="title">
-      <span class="closeIcon" (click)="close()">close</span>
+      <span class="closeIcon" (click)="close()">x</span>
       <span>Share Location</span>
     </h3>
   </div>
-  <ng-container class="content">
+  <div class="content">
     <form class="add-budget-form" (ngSubmit)="onSubmitForm()" [formGroup]="shareLocationForm">
 
+      <div class="content-row">
+        <label for="locName" class="label">Location Name:</label>
+        <input type="text" id="locName" name="locName" formControlName="name" value="John">
+      </div>
+
+      <div class="content-row">
+        <label for="locMap" class="label">Location Map:</label>
+        <div id="locMap" name="locMap" class="content-map"></div>
+      </div>
+
+      <div class="content-row">
+        <label for="locType" class="label">Location Type:</label>
+        <select name="LocTypes" id="locType">
+          <option value="business">Business</option>
+          <option value="residential">Residential</option>
+          <option value="military">Military</option>
+        </select>
+      </div>
+
+      <div class="content-row">
+        <label for="logo" class="label">Location Name:</label>
+        <input type="file" id="logo" name="logo" formControlName="logo">
+      </div>
+
+      <br>
+      <div class="btns-row">
+        <input type="button" class="btn-cancel-return" value="Cancel">
+        <input type="submit" value="Submit" [disabled]="!shareLocationForm.valid" class="btn-save">
+      </div>
+
     </form>
-  </ng-container>
+  </div>
 </div>

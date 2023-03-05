@@ -3,8 +3,8 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   max-height: 80% vh;
-  min-height: 600px;
-  width: 60%;
+  min-height: 30rem;
+  width: 40%;
   position: relative;
   margin-left: 20%;
   margin-right: 20%;
@@ -48,8 +48,60 @@
   margin: 5px;
 }
 
-.content{
+.content {
+  padding: 1rem !important;
+}
 
+.content-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 2rem;
+}
+
+.label {
+  width: 20%;
+}
+
+.content-map {
+  height: 7rem;
+  width: 60%;
+  border: 1px solid gray;
+}
+
+.btns-row{
+  width: 80%;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: center;
+	align-content: center;
+}
+
+.btn-cancel-return {
+  background-color: orangered;
+  color: aliceblue;
+  width: 5rem;
+  border: 2px solid;
+  font-size: 14px;
+  height: 2rem;
+  border-radius: 5px;
+  line-height: 30px;
+}
+
+.btn-save {
+  background-color: dodgerblue;
+  color: aliceblue;
+  width: 5rem;
+  border: 2px solid;
+  font-size: 14px;
+  height: 2rem;
+  border-radius: 5px;
+  line-height: 30px;
 }
 
 

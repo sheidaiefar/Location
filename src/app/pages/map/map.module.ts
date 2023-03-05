@@ -10,7 +10,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   ],
   imports: [
     BrowserModule,
-    LocationModule
+    LocationModule,
+    LeafletModule
 
   ],
   providers: [],

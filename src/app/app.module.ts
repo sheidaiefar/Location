@@ -3,9 +3,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MapModule} from "./pages/map/map.module";
-import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import {MarkerComponent} from "./pages/marker/marker.component";
 import {DataService} from "./pages/services/data.service";
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 
 @NgModule({
   declarations: [
@@ -16,8 +16,7 @@ import {DataService} from "./pages/services/data.service";
     BrowserModule,
     AppRoutingModule,
     MapModule,
-    LeafletModule,
-    LeafletModule,
+    LeafletModule
   ],
   providers: [DataService],
   exports: [

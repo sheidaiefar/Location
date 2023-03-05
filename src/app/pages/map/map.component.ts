@@ -80,12 +80,12 @@ export class MapComponent {
 
 
       // create a new Leaflet marker at the given position
-      // let m = marker(entry.position);
+      let m = marker(entry.position);
       //
       // //add Event Listener for Click to open a new Modal
-      // m.addEventListener("click", ()=> {
-      //   this.zone.run(() => {this.openExampleDialog();})
-      // })
+      m.addEventListener("click", ()=> {
+        this.zone.run(() => {this.openExampleDialog();})
+      })
 
       // finally add the marker to the map s.t. it is visible
       // m.addTo(this.map);

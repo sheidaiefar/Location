@@ -7,16 +7,17 @@
 <!--<div class="map-container">-->
 <!--    <div id="map" (click)="getPosition($event)" ></div>-->
 <!--</div>-->
-<!--      [leafletOptions]="options"-->
-<!--      (leafletMapReady)="onMapReady($event)"-->
+
 <!--(click)="removeMarker(marker)"-->
 
-   <div style="height: 400px; width: 600px"
-      leaflet
-
-   >
-    </div>
-    <button (click)="addMarker()">Add markers</button>
+<div style="height: 400px; width: 600px"
+     leaflet
+     [leafletOptions]="options"
+     (leafletMapReady)="onMapReady($event)"
+>
+</div>
+<button (click)="addMarker()">Add markers</button>
 <!--    <button (click)="mutateMarkerData()">Mutate data</button>-->
-    <hr />
-    <span *ngFor="let marker of markers" style="border:1px solid black; margin:5px;">{{ marker.name }} <a href="#" >(remove)</a></span>
+<hr/>
+<span *ngFor="let marker of markers" style="border:1px solid black; margin:5px;">{{ marker.name }} <a
+  href="#">(remove)</a></span>

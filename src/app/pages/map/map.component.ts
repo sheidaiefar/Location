@@ -1,12 +1,11 @@
-import { Component, OnInit, ComponentFactoryResolver, ComponentRef, Injector, DoCheck, NgZone} from '@angular/core';
+import {Component, OnInit, ComponentFactoryResolver, ComponentRef, Injector, DoCheck, NgZone} from '@angular/core';
 import {Observable, Subscriber} from 'rxjs';
 import * as Leaflet from 'leaflet';
 import {map} from 'leaflet';
 import {MarkerMetaData} from '../models/location.model'
-import { tileLayer, latLng, marker, Marker } from 'leaflet';
+import {tileLayer, latLng, marker, Marker} from 'leaflet';
 import {DataService} from "../services/data.service";
 import {MarkerComponent} from "../marker/marker.component";
-
 
 
 @Component({
@@ -38,14 +37,15 @@ export class MapComponent {
     }
   ]
 
-   constructor(
-     private dataService: DataService,
-     private resolver: ComponentFactoryResolver,
-     private injector: Injector,
-     // private dialog: MatDialog,
-     private zone: NgZone){}
+  constructor(
+    private dataService: DataService,
+    private resolver: ComponentFactoryResolver,
+    private injector: Injector,
+    // private dialog: MatDialog,
+    private zone: NgZone) {
+  }
 
-  onMapReady(map:any) {
+  onMapReady(map: any) {
     // get a local reference to the map as we need it later
     this.map = map;
     this.addMarker();
@@ -61,10 +61,11 @@ export class MapComponent {
     this.addMarkers()
   }
 
-    addMarker() {
+  addMarker() {
     // simply iterate over the array of markers from our data service
     // and add them to the map
-    for(const entry of this.dataService.getMarkers()) {
+
+    for (const entry of this.dataService.getMarkers()) {
       // dynamically instantiate a HTMLMarkerComponent
       const factory = this.resolver.resolveComponentFactory(MarkerComponent);
 
@@ -80,12 +81,16 @@ export class MapComponent {
 
 
       // create a new Leaflet marker at the given position
-      let m = marker(entry.position);
+      if (entry.position) {
+        let m = marker(entry.position);
+        // m.addEventListener("click", ()=> {
+        // this.zone.run(() => {this.openExampleDialog();})
+        // })
+      }
+
       //
       // //add Event Listener for Click to open a new Modal
-      m.addEventListener("click", ()=> {
-        this.zone.run(() => {this.openExampleDialog();})
-      })
+
 
       // finally add the marker to the map s.t. it is visible
       // m.addTo(this.map);

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import * as L from 'leaflet';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-location',
@@ -7,5 +8,11 @@ import * as L from 'leaflet';
   styleUrls: ['./location.component.css']
 })
 export class LocationComponent {
+  shareLocationForm!: FormGroup;
 
+  onSubmitForm() {
+  }
+
+  close() {
+  }
 }

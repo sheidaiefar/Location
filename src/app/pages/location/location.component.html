@@ -1,1 +1,13 @@
-<p>loc</p>
+<div class="container">
+  <div class="dialog-title">
+    <h3 class="title">
+      <span class="closeIcon" (click)="close()">close</span>
+      <span>Share Location</span>
+    </h3>
+  </div>
+  <ng-container class="content">
+    <form class="add-budget-form" (ngSubmit)="onSubmitForm()" [formGroup]="shareLocationForm">
+
+    </form>
+  </ng-container>
+</div>

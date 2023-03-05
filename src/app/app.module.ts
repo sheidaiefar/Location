@@ -6,6 +6,8 @@ import {MapModule} from "./pages/map/map.module";
 import {MarkerComponent} from "./pages/marker/marker.component";
 import {DataService} from "./pages/services/data.service";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import {LocationModule} from "./pages/location/location.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -13,9 +15,12 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
     MarkerComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     MapModule,
+    LocationModule,
     LeafletModule
   ],
   providers: [DataService],

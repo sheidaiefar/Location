@@ -1,1 +1,55 @@
 
+.container {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  max-height: 80% vh;
+  min-height: 600px;
+  width: 60%;
+  position: relative;
+  margin-left: 20%;
+  margin-right: 20%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 2px solid lightgray;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.dialog-title {
+  background-color: #3f51b5;
+  font-size: large;
+  color: white;
+  height: 45px;
+  width: 1238px;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  padding: auto;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
+}
+
+.closeIcon {
+  cursor: pointer;
+  padding-right: 10px;
+  color: whitesmoke;
+  margin: 5px;
+}
+
+.content{
+
+}
+
+

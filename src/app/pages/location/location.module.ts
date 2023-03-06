@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
 import {LocationComponent} from "./location.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule} from "@angular/forms";
+import {MapModule} from "../map/map.module";
 
 @NgModule({
   declarations: [
@@ -9,7 +10,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    MapModule,
     ReactiveFormsModule
   ],
   providers: [],

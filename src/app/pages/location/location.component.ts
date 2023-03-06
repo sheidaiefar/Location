@@ -29,8 +29,8 @@ export class LocationComponent {
         'coordinates': new FormControl([0, 0])
       });
     this.shareLocationForm.valueChanges.subscribe(
-      (value)=>console.log(value)
-   );
+      (value) => console.log(value)
+    );
 
     // if (this.location) {
     //   //edit mode

@@ -14,8 +14,10 @@
       </div>
 
       <div class="content-row">
-        <label for="locMap" class="label">Location Map:</label>
-        <div id="locMap" name="locMap" class="content-map" formControlName="coordinates"></div>
+        <label for="locMap" class="label">Location on Map:</label>
+        <div id="locMap" name="locMap" class="content-map" formControlName="coordinates">
+          <app-map></app-map>
+        </div>
       </div>
 
       <div class="content-row">
@@ -37,7 +39,6 @@
         <input type="button" class="btn-cancel-return" value="Cancel">
         <input type="submit" value="Submit" [disabled]="!shareLocationForm.valid" class="btn-save">
       </div>
-
     </form>
   </div>
 </div>

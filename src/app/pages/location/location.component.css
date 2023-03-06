@@ -12,6 +12,7 @@
   -webkit-overflow-scrolling: touch;
   border: 2px solid lightgray;
   border-radius: 5px 5px 5px 5px;
+  z-index: auto;
 }
 
 .dialog-title {

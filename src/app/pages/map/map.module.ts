@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from "@angular/platform-browser";
 import {MapComponent} from "./map.component";
-import {LocationModule} from "../location/location.module";
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -10,8 +9,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   ],
   imports: [
     BrowserModule,
-    LocationModule,
-    LeafletModule
+    LeafletModule,
 
   ],
   providers: [],
@@ -20,4 +18,5 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   ],
   bootstrap: []
 })
-export class MapModule { }
+export class MapModule {
+}

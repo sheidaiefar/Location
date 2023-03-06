@@ -1,21 +1,38 @@
-import {Component} from '@angular/core';
-
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import * as Leaflet from 'leaflet';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent {
+export class MapComponent implements OnInit,OnDestroy{
+  title = 'leafletApps';
+  map: any;
 
+  ngOnInit(): void {
+    this.map = Leaflet.map('map').setView([28, 34], 5);
+    Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+
+    Leaflet.marker([28, 34]).addTo(this.map).bindPopup('Delhi').openPopup();
+    Leaflet.marker([34, 77]).addTo(this.map).bindPopup('Leh').openPopup();
+
+
+    //   antPath([[28.644800, 77.216721], [34.1526, 77.5771]],
+    //     { color: '#FF0000', weight: 5, opacity: 0.6 })
+    //     .addTo(this.map);
+    // }
+  }
+
+  ngOnDestroy(): void {
+    this.map.remove();
+  }
 
 }
 
 
-
 // import {Component, OnInit, ComponentFactoryResolver, ComponentRef, Injector, DoCheck, NgZone} from '@angular/core';
 // import {Observable, Subscriber} from 'rxjs';
-// import * as Leaflet from 'leaflet';
 // import {map} from 'leaflet';
 // import {MarkerMetaData} from '../models/location.model'
 // import {tileLayer, latLng, marker, Marker} from 'leaflet';

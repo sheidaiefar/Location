@@ -10,17 +10,17 @@
 
       <div class="content-row">
         <label for="locName" class="label">Location Name:</label>
-        <input type="text" id="locName" name="locName" formControlName="name" >
+        <input type="text" id="locName" name="locName" formControlName="name">
       </div>
 
       <div class="content-row">
         <label for="locMap" class="label">Location Map:</label>
-        <div id="locMap" name="locMap" class="content-map"></div>
+        <div id="locMap" name="locMap" class="content-map" formControlName="coordinates"></div>
       </div>
 
       <div class="content-row">
         <label for="locType" class="label">Location Type:</label>
-        <select name="LocTypes" id="locType">
+        <select name="LocTypes" id="locType" formControlName="type">
           <option value="business">Business</option>
           <option value="residential">Residential</option>
           <option value="military">Military</option>

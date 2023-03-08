@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import * as Leaflet from 'leaflet';
-import { Observable, Subscriber } from 'rxjs';
-import {  MarkerModel } from '../models/location.model';
+import { BehaviorSubject, Observable, Subscriber } from 'rxjs';
+import { MarkerModel } from '../models/location.model';
+import { DataService } from '../services/data.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-map',
@@ -10,9 +12,7 @@ import {  MarkerModel } from '../models/location.model';
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   map: any;
-  markers: MarkerModel[] = [
-    { position: [49.290164, 11.1633], name: 'maliheeeeee' },
-  ];
+  markers: MarkerModel[] = [];
 
   private initMap(): void {
     this.map = Leaflet.map('map', {
@@ -37,13 +37,36 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  // public SetValueIntoStorage(marker: MarkerModel) {
+  //   this.localStorageService.SetMarker(marker);
+  // }
+
   ngOnInit(): void {}
 
+  constructor(
+    public localStorageService: LocalStorageService,
+    public dataService: DataService
+  ) {
+    this.dataService.markersSubject.subscribe((res) => {
+      this.markers = res;
+    });
+  }
+
   ngAfterViewInit(): void {
+    this.markers = [...this.markers];
+
     this.initMap();
 
     this.map.on('click', function (e: any) {
+      const lat = e.latlng.lat;
+      const lang = e.latlng.lng;
+
       alert('Lat, Lon : ' + e.latlng.lat + ', ' + e.latlng.lng);
+      const obj = new MarkerModel();
+      obj.position = [lat, lang];
+      obj.name = 'meeee at localStorage';
+      localStorage.setItem('markers', JSON.stringify(obj))
+      console.log('loc',localStorage)   
     });
   }
 
@@ -51,6 +74,17 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map.remove();
   }
 }
+
+
+
+
+// function SetValueIntoStorage(marker: MarkerModel) {
+
+//   // this.markers.push(marker);
+//   // this.localStorageService.SetMarker(this.markers);
+//   // console.log(this.markers);
+//   debugger;
+// }
 
 // import {Component, OnInit, ComponentFactoryResolver, ComponentRef, Injector, DoCheck, NgZone} from '@angular/core';
 // import {Observable, Subscriber} from 'rxjs';
@@ -60,8 +94,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 // import {DataService} from "../services/data.service";
 // import {MarkerComponent} from "../marker/marker.component";
 //
-//
-
 //
 //   options = {
 //     layers: [

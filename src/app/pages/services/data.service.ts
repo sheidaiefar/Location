@@ -1,27 +1,17 @@
 import { Injectable } from '@angular/core';
 import { LatLngExpression} from 'leaflet';
+import { BehaviorSubject } from 'rxjs';
 import {MarkerModel} from "../models/location.model";
 
 
 @Injectable()
 export class DataService {
-  markers: MarkerModel[] = [
-    // {
-    //   id: 1,
-    //   name: 'Marker name 1',
-    //   description: 'descr 1',
-    //   position: [ 46.879966, -121.726909 ]
-    // },
-    // {
-    //   id: 2,
-    //   name: 'Marker name 2',
-    //   description: 'descr 2',
-    //   position: [ 46.000966, -123.726909 ]
-    // }
-  ];
+  markers: MarkerModel[] = [];
+  markersSubject = new BehaviorSubject<MarkerModel[]>(this.markers);
+
 
   getMarkers() {
-    return this.markers;
+    return this
   }
 
   getMarkerById(id:number) {

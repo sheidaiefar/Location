@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import * as Leaflet from 'leaflet';
-import { MarkerMetaData, MarkerModel } from '../models/location.model';
+import { Observable, Subscriber } from 'rxjs';
+import {  MarkerModel } from '../models/location.model';
 
 @Component({
   selector: 'app-map',
@@ -10,12 +11,12 @@ import { MarkerMetaData, MarkerModel } from '../models/location.model';
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   map: any;
   markers: MarkerModel[] = [
-    { position: [39.8282, -98.5795], name: 'maliheeeeee' },
+    { position: [49.290164, 11.1633], name: 'maliheeeeee' },
   ];
 
   private initMap(): void {
     this.map = Leaflet.map('map', {
-      center: [39.8282, -98.5795],
+      center: [49.290164, 11.1633],
       zoom: 3,
     });
 
@@ -34,13 +35,16 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         .bindPopup(marker.name)
         .openPopup();
     });
-
   }
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.initMap();
+
+    this.map.on('click', function (e: any) {
+      alert('Lat, Lon : ' + e.latlng.lat + ', ' + e.latlng.lng);
+    });
   }
 
   ngOnDestroy(): void {
@@ -59,7 +63,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 //
 
 //
-//   markers: MarkerMetaData[] = [];
 //   options = {
 //     layers: [
 //       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
@@ -68,16 +71,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 //     center: latLng(46.879966, -121.726909)
 //   };
 //
-//   markerLocations = [
-//     {
-//       lat: 38.914764662971436,
-//       lng: -97.01461108304595
-//     },
-//     {
-//       lat: 2,
-//       lng: 2
-//     }
-//   ]
+
 //
 //   constructor(
 //     private dataService: DataService,
@@ -93,15 +87,17 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 //     this.addMarker();
 //   }
 //
-//   ngAfterViewInit() {
-//     this.map = map('map').setView([0, 0], 3);
-//
-//     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-//     }).addTo(this.map);
-//
-//     this.addMarkers()
-//   }
+
+// setGeoLocation(position: { coords: { latitude: any; longitude: any } }) {
+//   const {
+//      coords: { latitude, longitude },
+//   } = position;
+// debugger
+//   const  map = Leaflet.map('map').setView([latitude, longitude], 3);
+
+//   Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' ).addTo(map);
+// }
+
 //
 //   addMarker() {
 //     // simply iterate over the array of markers from our data service

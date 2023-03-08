@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { BehaviorSubject, Observable, Subscriber } from 'rxjs';
 import { MarkerModel } from '../models/location.model';
@@ -13,6 +21,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   map: any;
   markers: MarkerModel[] = [];
+  // public markersSubject = new BehaviorSubject<MarkerModel[]>(this.markers);
 
   private initMap(): void {
     this.map = Leaflet.map('map', {
@@ -28,55 +37,84 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
     tiles.addTo(this.map);
+    if (this.markers.length >= 1) this.SetMarkers(this.markers);
+  }
 
-    this.markers.forEach((marker) => {
-      Leaflet.marker(marker.position)
-        .addTo(this.map)
-        .bindPopup(marker.name)
-        .openPopup();
-    });
+  SetMarkers(markers: MarkerModel[]) {
+    if (this.markers != undefined && this.markers.length >= 1) {
+      console.log('ms', markers);
+      this.markers.forEach((marker) => {
+        Leaflet.marker(marker.position)
+          .addTo(this.map)
+          .bindPopup(marker.name)
+          .openPopup();
+      });
+    }
   }
 
   // public SetValueIntoStorage(marker: MarkerModel) {
   //   this.localStorageService.SetMarker(marker);
   // }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataService.markSubject.subscribe((res) => {
+      debugger
+      this.markers.push(res);
+      this.SetMarkers(this.markers);
+    });
+
+    debugger;
+  }
+
+  ngDoCheck(): void {
+    // if (localStorage != null) {
+    //   const x = localStorage.getItem('marker');
+    //   this.markers.push(JSON.parse(x as string));
+    // }
+    // console.log('loc', localStorage);
+    // console.log('marx', this.markers);
+  }
 
   constructor(
     public localStorageService: LocalStorageService,
     public dataService: DataService
   ) {
-    this.dataService.markersSubject.subscribe((res) => {
-      this.markers = res;
-    });
+    // this.markersSubject.subscribe((res) => {
+    //   this.markers = res;
+    // });
   }
 
   ngAfterViewInit(): void {
-    this.markers = [...this.markers];
-
     this.initMap();
 
     this.map.on('click', function (e: any) {
       const lat = e.latlng.lat;
       const lang = e.latlng.lng;
-
-      alert('Lat, Lon : ' + e.latlng.lat + ', ' + e.latlng.lng);
       const obj = new MarkerModel();
       obj.position = [lat, lang];
       obj.name = 'meeee at localStorage';
-      localStorage.setItem('markers', JSON.stringify(obj))
-      console.log('loc',localStorage)   
+      debugger;
+      setteruu(obj, new DataService());
     });
   }
+
+  //   Storage.prototype.setObj = function(key, obj) {
+  //     return this.setItem(key, JSON.stringify(obj))
+  // }
+  // Storage.prototype.getObj = function(key) {
+  //     return JSON.parse(this.getItem(key))
+  // }
 
   ngOnDestroy(): void {
     this.map.remove();
   }
 }
 
-
-
+export function setteruu(obj: MarkerModel, dataService: DataService) {
+  // var markerSubject = new BehaviorSubject<MarkerModel>(obj);
+  // markerSubject.next(obj);
+  dataService.markSubject.next(obj);
+}
 
 // function SetValueIntoStorage(marker: MarkerModel) {
 

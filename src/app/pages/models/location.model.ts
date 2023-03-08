@@ -10,7 +10,7 @@ export enum LocationType{
 }
 
 export class LocationModel {
-  id?: number | string;
+  id?: number;
   name?: string;
   type?: LocationType;
   coordinates?: [number,number];

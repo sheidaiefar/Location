@@ -1,4 +1,4 @@
-import {tileLayer, latLng, marker, Marker, LatLngExpression} from 'leaflet';
+import {tileLayer, latLng, marker, Marker, LatLngExpression, Layer} from 'leaflet';
 import {MarkerComponent} from "../marker/marker.component";
 import {ComponentRef} from "@angular/core";
 
@@ -17,10 +17,10 @@ export class LocationModel {
 }
 
 export class MarkerModel{
-  id?: number;
-  name?: String;
-  description?: String;
-  position?: LatLngExpression
+  // id?: number;
+   name ='';
+  // description?: String;
+  position!: LatLngExpression
 }
 
 

@@ -1,52 +1,52 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import * as Leaflet from 'leaflet';
+import { MarkerMetaData, MarkerModel } from '../models/location.model';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements OnInit,AfterViewInit, OnDestroy{
+export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   map: any;
+  markers: MarkerModel[] = [
+    { position: [39.8282, -98.5795], name: 'maliheeeeee' },
+  ];
 
   private initMap(): void {
     this.map = Leaflet.map('map', {
-      center: [ 39.8282, -98.5795 ],
-      zoom: 3
+      center: [39.8282, -98.5795],
+      zoom: 3,
     });
 
-    const tiles = Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      minZoom: 3,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
-
+    const tiles = Leaflet.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {
+        maxZoom: 18,
+        minZoom: 3,
+      }
+    );
     tiles.addTo(this.map);
+
+    this.markers.forEach((marker) => {
+      Leaflet.marker(marker.position)
+        .addTo(this.map)
+        .bindPopup(marker.name)
+        .openPopup();
+    });
+
   }
 
-  ngOnInit(): void {
-    // this.map = Leaflet.map('map').setView([28, 34], 5);
-    // Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+  ngOnInit(): void {}
 
-    // Leaflet.marker([28, 34]).addTo(this.map).bindPopup('Delhi').openPopup();
-    // Leaflet.marker([34, 77]).addTo(this.map).bindPopup('Leh').openPopup();
-
-
-    //   antPath([[28.644800, 77.216721], [34.1526, 77.5771]],
-    //     { color: '#FF0000', weight: 5, opacity: 0.6 })
-    //     .addTo(this.map);
-    // }
+  ngAfterViewInit(): void {
+    this.initMap();
   }
-
-  ngAfterViewInit():void{
-    this.initMap()  }
 
   ngOnDestroy(): void {
     this.map.remove();
   }
-
 }
-
 
 // import {Component, OnInit, ComponentFactoryResolver, ComponentRef, Injector, DoCheck, NgZone} from '@angular/core';
 // import {Observable, Subscriber} from 'rxjs';
@@ -57,14 +57,7 @@ export class MapComponent implements OnInit,AfterViewInit, OnDestroy{
 // import {MarkerComponent} from "../marker/marker.component";
 //
 //
-// @Component({
-//   selector: 'app-map',
-//   templateUrl: './map.component.html',
-//   styleUrls: ['./map.component.css']
-// })
-// export class MapuComponent {
-//   map: any;
-//   coor: any;
+
 //
 //   markers: MarkerMetaData[] = [];
 //   options = {

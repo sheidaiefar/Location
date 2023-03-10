@@ -94,7 +94,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       obj.position = [lat, lang];
       obj.name = 'meeee at localStorage';
       debugger;
-      setteruu(obj, new DataService());
+      CoordsSetter(obj, new DataService());
     });
   }
 
@@ -110,7 +110,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 }
 
-export function setteruu(obj: MarkerModel, dataService: DataService) {
+export function CoordsSetter(obj: MarkerModel, dataService: DataService) {
   // var markerSubject = new BehaviorSubject<MarkerModel>(obj);
   // markerSubject.next(obj);
   dataService.markSubject.next(obj);
